@@ -1,0 +1,40 @@
+.container {
+  width: 100%;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.label {
+  font-size: 0.75rem;
+  color: #94A3B8;
+}
+.value {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: #00D2FF;
+}
+.track {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  border-radius: 999px;
+  transition: all 1s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}

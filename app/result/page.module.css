@@ -1,0 +1,364 @@
+.wrapper {
+  max-width: 896px; /* max-w-4xl */
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  background: rgba(0, 210, 255, 0.05);
+  color: #00D2FF;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #F8FAFC;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #94A3B8;
+}
+
+.mainCard {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+@media (min-width: 768px) {
+  .mainCard {
+    padding: 48px;
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.glowBg {
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+}
+
+.scoreInfo {
+  flex: 1;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .scoreInfo {
+    text-align: left;
+  }
+}
+
+.scoreTitle {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.875rem;
+  color: #F8FAFC;
+  margin-bottom: 8px;
+  margin-top: 16px;
+}
+
+.scoreDesc {
+  color: #94A3B8;
+  font-size: 0.875rem;
+  margin-bottom: 24px;
+}
+
+.quickStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.statBox {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.statIcon {
+  font-size: 1.125rem;
+  margin-bottom: 4px;
+}
+
+.statScore {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: #00D2FF;
+  font-size: 1.125rem;
+}
+
+.statLabel {
+  color: #64748B;
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+.sectionCard {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #F8FAFC;
+  margin-bottom: 24px;
+}
+
+.breakdownList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.breakdownRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.breakdownIcon {
+  font-size: 1.25rem;
+}
+
+.breakdownContent {
+  flex: 1;
+}
+
+.breakdownHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.breakdownLabel {
+  color: #F8FAFC;
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.breakdownDesc {
+  color: #64748B;
+  font-size: 0.75rem;
+  margin-left: 8px;
+}
+
+.breakdownScore {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.breakdownScoreNum {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.insightHeader {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.insightIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: rgba(0, 210, 255, 0.15);
+  border: 1px solid rgba(0, 210, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #00D2FF;
+}
+
+.insightTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #F8FAFC;
+  font-size: 1.125rem;
+}
+
+.insightBadge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  color: #00D2FF;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.insightDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00D2FF;
+  animation: pulse 2s infinite;
+}
+
+.insightText {
+  color: #CBD5E1;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.metaGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 768px) {
+  .metaGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.metaBox {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border-radius: 16px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.metaLabel {
+  color: #64748B;
+  font-size: 0.75rem;
+  margin-bottom: 4px;
+}
+
+.metaValue {
+  color: #E2E8F0;
+  font-size: 0.875rem;
+  font-weight: 500;
+  font-family: var(--font-mono);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .actions {
+    flex-direction: row;
+  }
+}
+
+.btnPrimary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #00D2FF;
+  color: #050914;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+}
+
+.btnPrimary:hover {
+  background: #3A86FF;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
+}
+
+.btnSecondary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #CBD5E1;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.btnSecondary:hover {
+  border-color: rgba(0, 210, 255, 0.4);
+  color: #F8FAFC;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btnOutline {
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #CBD5E1;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+.btnOutline:hover {
+  border-color: rgba(0, 210, 255, 0.4);
+  color: #F8FAFC;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.disclaimer {
+  text-align: center;
+  color: #475569;
+  font-size: 0.75rem;
+  margin-top: 32px;
+  line-height: 1.6;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}

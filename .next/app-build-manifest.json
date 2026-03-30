@@ -3,48 +3,43 @@
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/css-app_page_module_css.css",
       "static/chunks/app/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/css-app_globals_css.css",
+      "static/css/css-app_globals_css-app_layout_module_css-components_Footer_module_css-components_Navbar_module_css.css",
       "static/chunks/app/layout.js"
     ],
     "/assessment/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/css-app_assessment_page_module_css-components_ModuleCard_module_css.css",
       "static/chunks/app/assessment/page.js"
     ],
     "/history/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/css-components_RiskIndicator_module_css.css",
       "static/chunks/app/history/page.js"
+    ],
+    "/assessment/speech/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/css-app_assessment_test_module_css.css",
+      "static/chunks/app/assessment/speech/page.js"
     ],
     "/about/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/about/page.js"
     ],
-    "/assessment/speech/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/assessment/speech/page.js"
-    ],
     "/assessment/facial/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
+      "static/css/css-app_assessment_test_module_css.css",
       "static/chunks/app/assessment/facial/page.js"
-    ],
-    "/assessment/cognitive/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/assessment/cognitive/page.js"
-    ],
-    "/result/page": [
-      "static/chunks/webpack.js",
-      "static/chunks/main-app.js",
-      "static/chunks/app/result/page.js"
     ]
   }
 }

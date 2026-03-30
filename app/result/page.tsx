@@ -3,12 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useAssessment, RiskLevel } from '@/context/AssessmentContext';
 import CircularScore from '@/components/CircularScore';
 import ProgressBar from '@/components/ProgressBar';
 import RiskIndicator from '@/components/RiskIndicator';
+import styles from './page.module.css';
 
-// Generate a dynamic AI insight based on scores
 function generateInsight(speechScore: number, facialScore: number, cognitiveScore: number, riskLevel: RiskLevel): string {
   const insights: Record<string, string[]> = {
     Low: [
@@ -36,13 +37,23 @@ const scoreLabels: Record<string, { color: string; label: string }> = {
   High: { color: '#EF4444', label: 'Elevated Risk' },
 };
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 }
+  }
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+};
+
 export default function ResultPage() {
   const router = useRouter();
   const { speechScore, facialScore, cognitiveScore, finalScore, riskLevel, allCompleted, resetAssessment } = useAssessment();
   const [insight, setInsight] = useState('');
-  const [showScores, setShowScores] = useState(false);
-  const [showInsight, setShowInsight] = useState(false);
-  const [showActions, setShowActions] = useState(false);
 
   useEffect(() => {
     if (!allCompleted) {
@@ -52,16 +63,11 @@ export default function ResultPage() {
     if (speechScore !== null && facialScore !== null && cognitiveScore !== null) {
       setInsight(generateInsight(speechScore, facialScore, cognitiveScore, riskLevel));
     }
-    // Stagger reveal animations
-    const t1 = setTimeout(() => setShowScores(true), 600);
-    const t2 = setTimeout(() => setShowInsight(true), 1200);
-    const t3 = setTimeout(() => setShowActions(true), 1800);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
-  }, [allCompleted]);
+  }, [allCompleted, router, speechScore, facialScore, cognitiveScore, riskLevel]);
 
   if (!allCompleted || finalScore === null) {
     return (
-      <div className="min-h-screen bg-bg flex items-center justify-center">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 rounded-full border-2 border-accent/30 border-t-accent animate-spin mx-auto mb-4" />
           <p className="text-slate-400">Loading results...</p>
@@ -70,7 +76,7 @@ export default function ResultPage() {
     );
   }
 
-  const riskConfig = riskLevel ? scoreLabels[riskLevel] : { color: '#00B4D8', label: '' };
+  const riskConfig = riskLevel ? scoreLabels[riskLevel] : { color: '#00D2FF', label: '' };
   const moduleScores = [
     { label: 'Speech Analysis', score: speechScore ?? 0, icon: '🎤', desc: 'Fluency, pauses & articulation' },
     { label: 'Facial Analysis', score: facialScore ?? 0, icon: '📷', desc: 'Engagement & micro-expressions' },
@@ -78,151 +84,126 @@ export default function ResultPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-bg bg-grid neural-bg">
-      <div className="orb orb-blue w-96 h-96 top-0 right-0 float" />
-      <div className="orb orb-indigo w-72 h-72 bottom-20 left-0 float" style={{ animationDelay: '3s' }} />
-
-      <div className="max-w-4xl mx-auto px-6 py-12">
+    <div className={styles.wrapper}>
+      <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+        
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 mb-4 px-3 py-1.5 rounded-full border border-accent/20 bg-accent/5 text-accent text-xs font-mono">
+        <motion.div variants={childVariants} className={styles.header}>
+          <div className={styles.badge}>
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none">
-              <path d="M5 12l5 5L20 7" stroke="#00B4D8" strokeWidth="3" strokeLinecap="round"/>
+              <path d="M5 12l5 5L20 7" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
             </svg>
             Assessment Complete — {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
           </div>
-          <h1 className="font-display font-800 text-4xl md:text-5xl text-white mb-3">
-            Cognitive Health Report
-          </h1>
-          <p className="text-slate-400">AI-powered analysis across 3 assessment modules</p>
-        </div>
+          <h1 className={styles.title}>Cognitive Health Report</h1>
+          <p className={styles.subtitle}>AI-powered analysis across 3 assessment modules</p>
+        </motion.div>
 
         {/* Main score card */}
-        <div className="glass-card rounded-3xl p-8 md:p-12 mb-6 border border-white/5 relative overflow-hidden">
-          {/* Background glow */}
+        <motion.div variants={childVariants} className={styles.mainCard}>
           <div
-            className="absolute inset-0 opacity-5 rounded-3xl"
+            className={styles.glowBg}
             style={{ background: `radial-gradient(circle at 50% 50%, ${riskConfig.color}, transparent 70%)` }}
           />
 
-          <div className="relative z-10 flex flex-col md:flex-row items-center gap-10">
-            {/* Circular score */}
-            <div className="flex-shrink-0">
-              <CircularScore score={finalScore} riskLevel={riskLevel} size={220} />
+          <div style={{ flexShrink: 0 }}>
+            <CircularScore score={finalScore} riskLevel={riskLevel} size={220} />
+          </div>
+
+          <div className={styles.scoreInfo}>
+            <div style={{ marginBottom: '16px' }}>
+              <RiskIndicator level={riskLevel} size="lg" />
             </div>
+            <h2 className={styles.scoreTitle}>
+              Cognitive Risk Score: <span style={{ color: riskConfig.color }}>{finalScore}%</span>
+            </h2>
+            <p className={styles.scoreDesc}>
+              Score reflects overall cognitive performance across speech, facial, and memory assessments.
+            </p>
 
-            {/* Score details */}
-            <div className="flex-1 text-center md:text-left">
-              <div className="mb-4">
-                <RiskIndicator level={riskLevel} size="lg" />
-              </div>
-              <h2 className="font-display font-800 text-3xl text-white mb-2">
-                Cognitive Risk Score: <span style={{ color: riskConfig.color }}>{finalScore}%</span>
-              </h2>
-              <p className="text-slate-400 text-sm mb-6">
-                Score reflects overall cognitive performance across speech, facial, and memory assessments.
-              </p>
-
-              {/* Quick stats */}
-              <div className="grid grid-cols-3 gap-4">
-                {moduleScores.map((m, i) => (
-                  <div key={i} className="bg-white/5 rounded-xl p-3 text-center border border-white/5">
-                    <div className="text-lg mb-1">{m.icon}</div>
-                    <div className="font-mono font-600 text-accent text-lg">{m.score}</div>
-                    <div className="text-slate-500 text-xs mt-1">{m.label.split(' ')[0]}</div>
+            <div className={styles.quickStats}>
+              {moduleScores.map((m, i) => (
+                <div key={i} className={styles.statBox}>
+                  <div className={styles.statIcon}>{m.icon}</div>
+                  <div className={styles.statScore} style={{ color: m.score >= 76 ? '#22C55E' : m.score >= 60 ? '#EAB308' : '#EF4444' }}>
+                    {m.score}
                   </div>
-                ))}
-              </div>
+                  <div className={styles.statLabel}>{m.label.split(' ')[0]}</div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Score breakdown */}
-        <div
-          className={`glass-card rounded-2xl p-8 mb-6 transition-all duration-700 ${
-            showScores ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-          }`}
-        >
-          <h3 className="font-display font-700 text-xl text-white mb-6">Score Breakdown</h3>
-          <div className="space-y-6">
+        <motion.div variants={childVariants} className={styles.sectionCard}>
+          <h3 className={styles.sectionTitle}>Score Breakdown</h3>
+          <div className={styles.breakdownList}>
             {moduleScores.map((m, i) => {
               const level = m.score >= 76 ? 'Low' : m.score >= 60 ? 'Medium' : 'High';
               const barColor = level === 'Low' ? '#22C55E' : level === 'Medium' ? '#EAB308' : '#EF4444';
               return (
-                <div key={i}>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-xl">{m.icon}</span>
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between mb-1">
-                        <div>
-                          <span className="text-white font-500 text-sm">{m.label}</span>
-                          <span className="text-slate-500 text-xs ml-2">{m.desc}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          <RiskIndicator level={level as RiskLevel} size="sm" />
-                          <span className="font-mono text-sm font-600" style={{ color: barColor }}>{m.score}/100</span>
-                        </div>
+                <div key={i} className={styles.breakdownRow}>
+                  <span className={styles.breakdownIcon}>{m.icon}</span>
+                  <div className={styles.breakdownContent}>
+                    <div className={styles.breakdownHeader}>
+                      <div>
+                        <span className={styles.breakdownLabel}>{m.label}</span>
+                        <span className={styles.breakdownDesc}>{m.desc}</span>
                       </div>
-                      <ProgressBar value={m.score} color={barColor} animated />
+                      <div className={styles.breakdownScore}>
+                        <RiskIndicator level={level as RiskLevel} size="sm" showLabel={false} />
+                        <span className={styles.breakdownScoreNum} style={{ color: barColor }}>{m.score}/100</span>
+                      </div>
                     </div>
+                    <ProgressBar value={m.score} color={barColor} animated />
                   </div>
                 </div>
               );
             })}
           </div>
-        </div>
+        </motion.div>
 
         {/* AI Insight */}
-        <div
-          className={`glass-card rounded-2xl p-8 mb-6 border border-accent/10 transition-all duration-700 ${
-            showInsight ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-          }`}
-        >
-          <div className="flex items-start gap-4">
-            <div className="w-10 h-10 rounded-xl bg-accent/15 border border-accent/25 flex items-center justify-center flex-shrink-0 mt-0.5">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="#00B4D8" strokeWidth="1.5"/>
-                <path d="M12 16v-4M12 8h.01" stroke="#00B4D8" strokeWidth="2" strokeLinecap="round"/>
+        <motion.div variants={childVariants} className={styles.sectionCard} style={{ borderColor: 'rgba(0, 210, 255, 0.2)' }}>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '16px' }}>
+            <div className={styles.insightIcon}>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2a10 10 0 100 20A10 10 0 0012 2z" stroke="currentColor" strokeWidth="1.5"/>
+                <path d="M12 16v-4M12 8h.01" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
               </svg>
             </div>
             <div>
-              <div className="flex items-center gap-2 mb-3">
-                <h3 className="font-display font-700 text-white text-lg">AI Clinical Insight</h3>
-                <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-accent/10 border border-accent/20 text-xs text-accent font-mono">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+              <div className={styles.insightHeader}>
+                <h3 className={styles.insightTitle}>AI Clinical Insight</h3>
+                <div className={styles.insightBadge}>
+                  <div className={styles.insightDot} />
                   Generated
                 </div>
               </div>
-              <p className="text-slate-300 leading-relaxed text-sm">{insight}</p>
+              <p className={styles.insightText}>{insight}</p>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Metadata row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <motion.div variants={childVariants} className={styles.metaGrid}>
           {[
             { label: 'Assessment Date', value: new Date().toLocaleDateString() },
             { label: 'Duration', value: '~5 minutes' },
             { label: 'Modules Completed', value: '3 / 3' },
             { label: 'Analysis Engine', value: 'CogniNet v2.1' },
           ].map((item, i) => (
-            <div key={i} className="glass-card rounded-xl p-4 text-center">
-              <div className="text-slate-500 text-xs mb-1">{item.label}</div>
-              <div className="text-slate-200 text-sm font-500 font-mono">{item.value}</div>
+            <div key={i} className={styles.metaBox}>
+              <div className={styles.metaLabel}>{item.label}</div>
+              <div className={styles.metaValue}>{item.value}</div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Action buttons */}
-        <div
-          className={`flex flex-col sm:flex-row gap-4 transition-all duration-700 ${
-            showActions ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-          }`}
-        >
-          <Link
-            href="/recommendations"
-            className="flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl bg-accent text-bg font-700 text-lg hover:bg-highlight transition-all duration-200 btn-press glow-accent"
-          >
+        {/* Actions */}
+        <motion.div variants={childVariants} className={styles.actions}>
+          <Link href="/recommendations" className={styles.btnPrimary}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
               <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -230,7 +211,7 @@ export default function ResultPage() {
           </Link>
           <button
             onClick={() => { resetAssessment(); router.push('/assessment'); }}
-            className="flex-1 flex items-center justify-center gap-2 py-4 rounded-2xl border border-white/10 text-slate-300 font-500 hover:border-accent/40 hover:text-white transition-all duration-200"
+            className={styles.btnSecondary}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M1 4v6h6M23 20v-6h-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -238,19 +219,18 @@ export default function ResultPage() {
             </svg>
             Retake Assessment
           </button>
-          <button className="sm:w-auto px-6 py-4 rounded-2xl border border-white/10 text-slate-300 font-500 hover:border-accent/40 hover:text-white transition-all duration-200 flex items-center gap-2">
+          <button className={styles.btnOutline}>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             Export PDF
           </button>
-        </div>
+        </motion.div>
 
-        {/* Disclaimer */}
-        <p className="text-center text-slate-600 text-xs mt-8 leading-relaxed max-w-2xl mx-auto">
+        <motion.p variants={childVariants} className={styles.disclaimer}>
           This report is generated by a simulated AI system for demonstration purposes only and should not be used as a medical diagnosis. Consult a qualified healthcare professional for clinical evaluation.
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
     </div>
   );
 }

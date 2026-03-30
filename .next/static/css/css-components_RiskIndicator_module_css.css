@@ -1,0 +1,33 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./components/RiskIndicator.module.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************/
+.RiskIndicator_indicator__rmwb7 {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.RiskIndicator_sm__amcLx {
+  font-size: 0.75rem;
+  padding: 4px 8px;
+}
+.RiskIndicator_md__x3g7P {
+  font-size: 0.875rem;
+  padding: 6px 12px;
+}
+.RiskIndicator_lg___c8PW {
+  font-size: 1rem;
+  padding: 8px 16px;
+}
+.RiskIndicator_dot__orPpi {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: RiskIndicator_pulse__GDPWK 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+@keyframes RiskIndicator_pulse__GDPWK {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+

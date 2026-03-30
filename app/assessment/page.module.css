@@ -1,0 +1,269 @@
+.wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  background: rgba(0, 210, 255, 0.05);
+  color: #00D2FF;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #00D2FF;
+  box-shadow: 0 0 8px #00D2FF;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #F8FAFC;
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: #94A3B8;
+  font-size: 1.125rem;
+  max-width: 600px;
+  line-height: 1.6;
+}
+
+/* Progress Overview Container */
+.progressOverview {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 40px;
+}
+
+.progressTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.progressLabel {
+  font-size: 0.875rem;
+  color: #94A3B8;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.progressCount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2rem;
+  color: #F8FAFC;
+}
+
+.progressCountSub {
+  color: #64748B;
+  font-size: 1.125rem;
+  font-weight: 400;
+}
+
+.progressPct {
+  font-family: var(--font-mono);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #00D2FF;
+  text-align: right;
+  line-height: 1;
+}
+
+.progressPctLabel {
+  font-size: 0.75rem;
+  color: #64748B;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-align: right;
+  margin-top: 4px;
+}
+
+.progressBarTrack {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00D2FF, #3A86FF);
+  border-radius: 999px;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+.progressBarShimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.moduleIndicators {
+  display: flex;
+  gap: 24px;
+}
+
+.indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.875rem;
+}
+
+.indicatorDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.indicatorDone {
+  background: #10B981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);
+}
+
+.indicatorPending {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.indicatorLabelDone {
+  color: #E2E8F0;
+}
+
+.indicatorLabelPending {
+  color: #64748B;
+}
+
+/* Modules Grid */
+.modulesGrid {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+@media (min-width: 768px) {
+  .modulesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .actions {
+    flex-direction: row;
+  }
+}
+
+.btnResults {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #00D2FF;
+  color: #050914;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+}
+
+.btnResults:hover {
+  background: #3A86FF;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
+}
+
+.btnDisabled {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #64748B;
+  font-weight: 500;
+  font-size: 1rem;
+  cursor: not-allowed;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.btnReset {
+  padding: 16px 24px;
+  border-radius: 16px;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #EF4444;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.btnReset:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+/* Info Note */
+.infoNote {
+  margin-top: 40px;
+  padding: 16px 20px;
+  border-radius: 16px;
+  background: rgba(0, 210, 255, 0.05);
+  border: 1px solid rgba(0, 210, 255, 0.1);
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.infoIcon {
+  color: #00D2FF;
+  margin-top: 2px;
+}
+
+.infoText {
+  color: #94A3B8;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}

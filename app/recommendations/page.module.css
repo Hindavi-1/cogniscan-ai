@@ -1,0 +1,353 @@
+.wrapper {
+  max-width: 896px; /* max-w-4xl */
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+.header {
+  margin-bottom: 40px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.breadcrumbLink {
+  color: #64748B;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #00D2FF;
+}
+
+.breadcrumbSeparator {
+  color: #475569;
+}
+
+.breadcrumbCurrent {
+  color: #00D2FF;
+  font-size: 0.875rem;
+  font-family: var(--font-mono);
+}
+
+.headerTitleRow {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .headerTitleRow {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.25rem;
+  color: #F8FAFC;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #94A3B8;
+}
+
+.scoreBadge {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+}
+
+.scoreLabel {
+  color: #94A3B8;
+}
+
+.scoreValue {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: #00D2FF;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.summaryBanner {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 24px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(0, 210, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summaryIcon {
+  font-size: 2.5rem;
+}
+
+.summaryTitle {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: #F8FAFC;
+  font-size: 1.125rem;
+  margin-bottom: 4px;
+}
+
+.summaryDesc {
+  color: #94A3B8;
+  font-size: 0.875rem;
+}
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 210, 255, 0.15);
+  border-color: rgba(0, 210, 255, 0.4);
+}
+
+.cardIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.cardContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.cardHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.cardTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #F8FAFC;
+  font-size: 1.125rem;
+}
+
+.priorityBadge {
+  font-size: 0.75rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 500;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.categoryBadge {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.cardDesc {
+  color: #94A3B8;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.cardAction {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #00D2FF;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  border-radius: 8px;
+  padding: 6px 16px;
+  transition: all 0.2s ease;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.cardAction:hover {
+  background: rgba(0, 210, 255, 0.1);
+}
+
+.priorityIndicator {
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.priorityDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.resourcesSection {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 32px;
+  margin-bottom: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.resourcesTitle {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #F8FAFC;
+  font-size: 1.25rem;
+  margin-bottom: 24px;
+}
+
+.resourcesGrid {
+  display: grid;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .resourcesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.resourceCard {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 16px;
+  transition: all 0.2s ease;
+  display: block;
+  text-decoration: none;
+}
+
+.resourceCard:hover {
+  border-color: rgba(0, 210, 255, 0.3);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.resourceIcon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.resourceName {
+  font-weight: 500;
+  color: #F8FAFC;
+  font-size: 0.875rem;
+  margin-bottom: 2px;
+  transition: color 0.2s ease;
+}
+
+.resourceCard:hover .resourceName {
+  color: #00D2FF;
+}
+
+.resourceDesc {
+  color: #64748B;
+  font-size: 0.75rem;
+}
+
+.resourceUrl {
+  color: #00D2FF;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  margin-top: 8px;
+}
+
+.ctaContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .ctaContainer {
+    flex-direction: row;
+  }
+}
+
+.btnSchedule {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  color: #00D2FF;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btnSchedule:hover {
+  background: rgba(0, 210, 255, 0.1);
+}
+
+.btnHome {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px;
+  border-radius: 16px;
+  background: #00D2FF;
+  color: #050914;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+}
+
+.btnHome:hover {
+  background: #3A86FF;
+  transform: translateY(-2px);
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
+}

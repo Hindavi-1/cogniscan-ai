@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AssessmentProvider } from '@/context/AssessmentContext';
 import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
+import styles from './layout.module.css';
 
 export const metadata: Metadata = {
   title: 'Cogniscan AI — Cognitive Health Assessment',
@@ -11,12 +13,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-bg min-h-screen font-body antialiased">
+      <body className="antialiased">
+        <div className={styles.bgWrapper}>
+          <div className={styles.gridOverlay} />
+        </div>
         <AssessmentProvider>
-          <Navbar />
-          <main className="pt-16">
-            {children}
-          </main>
+          <div className={styles.mainLayout}>
+            <Navbar />
+            <main className={styles.content}>
+              {children}
+            </main>
+            <Footer />
+          </div>
         </AssessmentProvider>
       </body>
     </html>

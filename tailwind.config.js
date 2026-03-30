@@ -7,14 +7,16 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg: '#0B0F2F',
+        bg: '#050914',
+        surface: '#0A1128',
+        surfaceBorder: '#16234D',
         primary: '#1E3A8A',
-        accent: '#00B4D8',
-        highlight: '#50BCFF',
-        card: '#11163A',
-        border: '#1a2050',
-        'risk-low': '#22C55E',
-        'risk-medium': '#EAB308',
+        accent: '#00D2FF',
+        highlight: '#3A86FF',
+        card: '#0a0f25',
+        border: '#1E293B',
+        'risk-low': '#10B981',
+        'risk-medium': '#F59E0B',
         'risk-high': '#EF4444',
       },
       fontFamily: {
@@ -24,33 +26,15 @@ module.exports = {
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'spin-slow': 'spin 4s linear infinite',
-        'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
+        'spin-slow': 'spin 8s linear infinite',
         'float': 'float 6s ease-in-out infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'scan': 'scan 2s linear infinite',
-        'count': 'count 1s ease-out forwards',
       },
       keyframes: {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-12px)' },
-        },
-        glow: {
-          '0%': { boxShadow: '0 0 20px rgba(0, 180, 216, 0.3)' },
-          '100%': { boxShadow: '0 0 60px rgba(0, 180, 216, 0.8), 0 0 100px rgba(80, 188, 255, 0.4)' },
-        },
-        scan: {
-          '0%': { top: '0%' },
-          '100%': { top: '100%' },
-        },
-      },
-      backgroundImage: {
-        'grid-pattern': "linear-gradient(rgba(0,180,216,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,180,216,0.03) 1px, transparent 1px)",
-      },
-      backgroundSize: {
-        'grid': '50px 50px',
-      },
+        }
+      }
     },
   },
   plugins: [],

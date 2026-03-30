@@ -1,0 +1,347 @@
+.wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748B;
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  margin-bottom: 40px;
+}
+
+.breadcrumbActive {
+  color: #00D2FF;
+}
+
+.card {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 32px;
+  padding: 48px 32px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.iconWrapper {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: rgba(0, 210, 255, 0.1);
+  border: 2px solid rgba(0, 210, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto 32px;
+  box-shadow: 0 0 40px rgba(0, 210, 255, 0.3);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #F8FAFC;
+  margin-bottom: 16px;
+}
+
+.description {
+  color: #94A3B8;
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 32px;
+}
+
+.tipsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.tipItem {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.tipIcon {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.tipLabel {
+  color: #94A3B8;
+  font-size: 0.75rem;
+}
+
+.btnPrimary {
+  padding: 16px 40px;
+  border-radius: 16px;
+  background: #00D2FF;
+  color: #050914;
+  font-weight: 700;
+  font-size: 1.125rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.3), 0 0 40px rgba(0, 210, 255, 0.1);
+}
+
+.btnPrimary:hover {
+  transform: translateY(-2px);
+  background: #E0F7FA;
+  box-shadow: 0 0 30px rgba(0, 210, 255, 0.5), 0 0 60px rgba(0, 210, 255, 0.2);
+}
+
+.btnSecondary {
+  padding: 12px 32px;
+  border-radius: 16px;
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  color: #FCA5A5;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.btnSecondary:hover {
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.timerContainer {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 32px;
+}
+
+.timerText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  items-align: center;
+  justify-content: center;
+}
+
+.timerValue {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3rem;
+  color: #F8FAFC;
+}
+
+.timerLabel {
+  color: #94A3B8;
+  font-size: 0.75rem;
+}
+
+.recordingIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.pulsingDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #EF4444;
+  animation: pulse 1.5s infinite;
+}
+
+.recordingText {
+  color: #FCA5A5;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Specific to analyzing phase */
+.spinner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 210, 255, 0.3);
+  margin: 0 auto 32px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinnerRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top-color: #00D2FF;
+  animation: spin 1s linear infinite;
+}
+
+.progressContainer {
+  margin-bottom: 24px;
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  color: #64748B;
+  margin-bottom: 8px;
+}
+
+.progressPct {
+  font-family: var(--font-mono);
+  color: #00D2FF;
+}
+
+.progressBar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00D2FF, #3A86FF);
+  border-radius: 999px;
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.stepsList {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.stepDone {
+  color: #E2E8F0;
+}
+
+.stepPending {
+  color: #475569;
+}
+
+.stepIconDone {
+  color: #10B981;
+}
+
+.stepIconPending {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stepIconActive {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid #00D2FF;
+  box-shadow: 0 0 8px rgba(0, 210, 255, 0.4);
+}
+
+/* Done Phase */
+.iconDoneWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(16, 185, 129, 0.2);
+  border: 2px solid rgba(16, 185, 129, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+  color: #10B981;
+}
+
+.scoreContainer {
+  display: inline-block;
+  margin-bottom: 32px;
+}
+
+.scoreCircle {
+  position: relative;
+  width: 144px;
+  height: 144px;
+  margin: 0 auto;
+}
+
+.scoreValue {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: #00D2FF;
+}
+
+.insightsList {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.insightRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.875rem;
+}
+
+.btnGroup {
+  display: flex;
+  gap: 12px;
+}
+
+.btnRetakeFinished {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94A3B8;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btnRetakeFinished:hover {
+  border-color: rgba(0, 210, 255, 0.3);
+  color: #F8FAFC;
+}
+
+.btnContinue {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  background: #00D2FF;
+  color: #050914;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.btnContinue:hover {
+  background: #3A86FF;
+}

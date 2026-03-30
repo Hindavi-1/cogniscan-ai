@@ -1,0 +1,68 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(10, 17, 40, 0.7);
+  backdrop-filter: blur(16px);
+  --webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(0, 210, 255, 0.1);
+  transition: background-color 0.3s ease;
+}
+
+.logoContainer {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.logoContainer:hover {
+  box-shadow: 0 0 20px rgba(0, 210, 255, 0.3), 0 0 40px rgba(0, 210, 255, 0.1);
+}
+
+.navLink {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  color: #94A3B8;
+}
+
+.navLink:hover {
+  color: #F8FAFC;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.navLinkActive {
+  background: rgba(0, 210, 255, 0.1);
+  color: #00D2FF;
+  border: 1px solid rgba(0, 210, 255, 0.2);
+}
+
+.btnPrimary {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: #00D2FF;
+  color: #050914;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.btnPrimary:hover {
+  background: #3A86FF;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 210, 255, 0.3);
+}
+
+.btnPrimary:active {
+  transform: scale(0.98);
+}

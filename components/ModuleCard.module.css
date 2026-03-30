@@ -1,0 +1,170 @@
+.card {
+  background: rgba(10, 17, 40, 0.6);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  padding: 24px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.cardPending {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cardCompleted {
+  border: 1px solid rgba(0, 210, 255, 0.3);
+  background: rgba(10, 17, 40, 0.8);
+  box-shadow: 0 10px 40px rgba(0, 210, 255, 0.05);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 40px rgba(0, 210, 255, 0.15);
+  border-color: rgba(0, 210, 255, 0.4);
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.iconWrapper {
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  background: rgba(0, 210, 255, 0.1);
+  border: 1px solid rgba(0, 210, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.statusCompleted {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 600;
+}
+
+.statusPending {
+  font-size: 0.75rem;
+  color: #64748B;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-weight: 500;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: #F8FAFC;
+  font-size: 1.25rem;
+  margin-bottom: 8px;
+}
+
+.description {
+  color: #94A3B8;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+  flex: 1;
+}
+
+.scoreContainer {
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(0, 210, 255, 0.05);
+  border: 1px solid rgba(0, 210, 255, 0.1);
+}
+
+.scoreHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.scoreLabel {
+  font-size: 0.75rem;
+  color: #94A3B8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.scoreValue {
+  font-family: var(--font-mono);
+  color: #00D2FF;
+  font-weight: 600;
+}
+
+.progressTrack {
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #00D2FF, #3A86FF);
+  border-radius: 999px;
+  transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.btnStart {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  background: #00D2FF;
+  color: #050914;
+}
+
+.btnStart:hover {
+  background: #3A86FF;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 210, 255, 0.3);
+}
+
+.btnRetake {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 16px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  background: rgba(0, 210, 255, 0.1);
+  color: #00D2FF;
+  border: 1px solid rgba(0, 210, 255, 0.3);
+}
+
+.btnRetake:hover {
+  background: rgba(0, 210, 255, 0.15);
+  border-color: rgba(0, 210, 255, 0.5);
+  color: #F8FAFC;
+}

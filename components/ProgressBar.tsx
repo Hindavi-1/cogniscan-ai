@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import styles from './ProgressBar.module.css';
 
 interface ProgressBarProps {
   value: number; // 0-100
@@ -12,10 +13,10 @@ interface ProgressBarProps {
 
 export default function ProgressBar({
   value,
-  color = '#00B4D8',
+  color = '#00D2FF',
   label,
   animated = true,
-  height = 'h-2',
+  height = '8px',
 }: ProgressBarProps) {
   const [width, setWidth] = useState(0);
 
@@ -29,20 +30,19 @@ export default function ProgressBar({
   }, [value, animated]);
 
   return (
-    <div className="w-full">
+    <div className={styles.container}>
       {label && (
-        <div className="flex justify-between mb-1.5">
-          <span className="text-xs text-slate-400">{label}</span>
-          <span className="text-xs font-mono text-accent">{value}%</span>
+        <div className={styles.header}>
+          <span className={styles.label}>{label}</span>
+          <span className={styles.value} style={{ color }}>{value}%</span>
         </div>
       )}
-      <div className={`w-full bg-white/5 rounded-full ${height} overflow-hidden`}>
+      <div className={styles.track} style={{ height }}>
         <div
-          className="h-full rounded-full transition-all duration-1000 ease-out relative overflow-hidden"
+          className={styles.fill}
           style={{ width: `${width}%`, backgroundColor: color }}
         >
-          {/* Shimmer effect */}
-          <div className="absolute inset-0 shimmer" />
+          <div className={styles.shimmer} />
         </div>
       </div>
     </div>

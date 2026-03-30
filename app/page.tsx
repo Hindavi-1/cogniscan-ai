@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import styles from './page.module.css';
 
 const stats = [
   { value: '94%', label: 'Detection Accuracy' },
@@ -28,168 +29,184 @@ const features = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+};
+
 export default function HomePage() {
-  const [glowPhase, setGlowPhase] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => setGlowPhase(p => (p + 1) % 3), 2000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <div className="min-h-screen bg-bg bg-grid neural-bg overflow-hidden">
+    <div className={styles.pageWrapper}>
       {/* Orbs */}
-      <div className="orb orb-blue w-96 h-96 top-20 -left-20 float" style={{ animationDelay: '0s' }} />
-      <div className="orb orb-indigo w-80 h-80 top-40 right-0 float" style={{ animationDelay: '2s' }} />
-      <div className="orb orb-blue w-64 h-64 bottom-40 right-20 float" style={{ animationDelay: '4s' }} />
-
+      <div className={`${styles.orb} ${styles.orbBlue}`} style={{ width: 400, height: 400, top: 80, left: -60, animationDelay: '0s' }} />
+      <div className={`${styles.orb} ${styles.orbIndigo}`} style={{ width: 320, height: 320, top: 160, right: -40, animationDelay: '2s' }} />
+      
       {/* Hero Section */}
-      <section className="relative max-w-6xl mx-auto px-6 pt-24 pb-32 text-center">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full border border-accent/30 bg-accent/5 text-accent text-xs font-mono">
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          AI-Powered Cognitive Health Platform
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-        </div>
+      <section className={styles.hero}>
+        <motion.div initial="hidden" animate="visible" variants={containerVariants}>
+          {/* Badge */}
+          <motion.div variants={itemVariants} className={styles.badge}>
+            <div className={`${styles.dot} animate-pulse`} />
+            AI-Powered Cognitive Health Platform
+            <div className={`${styles.dot} animate-pulse`} />
+          </motion.div>
 
-        {/* Title */}
-        <h1 className="font-display font-800 text-5xl md:text-7xl text-white mb-6 leading-none tracking-tight">
-          Cogni<span className="text-accent text-glow">scan</span>
-          <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent via-highlight to-accent text-4xl md:text-6xl">
-            AI
-          </span>
-        </h1>
+          {/* Title */}
+          <motion.h1 variants={itemVariants} className={styles.title}>
+            Cogniscan <span className={styles.titleHighlight}>AI</span>
+          </motion.h1>
 
-        <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-4 leading-relaxed">
-          Early detection of cognitive decline using multimodal AI analysis.
-          <br />
-          <span className="text-slate-400 text-base">Powered by speech, facial behavior, and cognitive assessment.</span>
-        </p>
+          {/* Subtitle */}
+          <motion.p variants={itemVariants} className={styles.subtitle}>
+            Early detection of cognitive decline using multimodal AI analysis.
+            <span className={styles.subtitleSub}>Powered by speech, facial behavior, and cognitive assessment.</span>
+          </motion.p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-10">
-          <Link
-            href="/assessment"
-            className="group relative px-8 py-4 rounded-2xl bg-accent text-bg font-600 text-lg hover:bg-highlight transition-all duration-300 btn-press glow-accent-intense"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              Start Assessment
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="group-hover:translate-x-1 transition-transform">
+          {/* CTAs */}
+          <motion.div variants={itemVariants} className={styles.ctaGroup}>
+            <Link href="/assessment" className={styles.btnPrimary}>
+              <span>Start Assessment</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-            </span>
-          </Link>
-          <Link
-            href="/about"
-            className="px-8 py-4 rounded-2xl border border-white/10 text-slate-300 font-500 text-lg hover:border-accent/40 hover:text-white transition-all duration-300"
-          >
-            Learn More
-          </Link>
-        </div>
+            </Link>
+            <Link href="/about" className={styles.btnSecondary}>
+              Learn More
+            </Link>
+          </motion.div>
+        </motion.div>
 
-        {/* Brain visualization placeholder */}
-        <div className="relative mt-20 flex justify-center">
-          <div className="relative w-80 h-80">
-            {/* Outer rings */}
+        {/* Brain Vis */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className={styles.brainVis}
+        >
+          <div className={styles.brainContainer}>
             {[1, 2, 3].map(i => (
               <div
                 key={i}
-                className="absolute inset-0 rounded-full border border-accent/10"
+                className={styles.brainRing}
                 style={{
                   transform: `scale(${1 + i * 0.15})`,
-                  animation: `spin ${10 + i * 5}s linear infinite ${i % 2 === 0 ? 'reverse' : ''}`,
+                  animation: `spin-slow flex ${10 + i * 5}s linear infinite ${i % 2 === 0 ? 'reverse' : ''}`,
                 }}
               />
             ))}
-            {/* Center brain card */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="glass-card rounded-3xl w-48 h-48 flex flex-col items-center justify-center glow-accent">
-                <div className="text-6xl mb-2 float">🧠</div>
-                <div className="text-accent text-xs font-mono text-center">
-                  Neural Analysis<br />Active
-                </div>
+            <div className={styles.brainCard}>
+              <div className={styles.brainIcon}>🧠</div>
+              <div className={styles.brainText}>
+                Neural Analysis<br />Active
               </div>
             </div>
             {/* Orbiting dots */}
             {[0, 60, 120, 180, 240, 300].map((angle, i) => (
               <div
                 key={i}
-                className="absolute w-3 h-3 rounded-full bg-accent/60"
                 style={{
+                  position: 'absolute',
+                  width: 12, height: 12,
+                  borderRadius: '50%',
+                  background: 'rgba(0, 210, 255, 0.6)',
                   top: `${50 + 45 * Math.sin((angle * Math.PI) / 180)}%`,
                   left: `${50 + 45 * Math.cos((angle * Math.PI) / 180)}%`,
                   transform: 'translate(-50%, -50%)',
-                  animation: `pulse ${1.5 + i * 0.3}s ease-in-out infinite`,
+                  animation: `pulse 2s ease-in-out infinite`,
+                  animationDelay: `${i * 0.2}s`
                 }}
               />
             ))}
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* Stats */}
-      <section className="relative border-y border-white/5 py-12">
-        <div className="max-w-4xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+      <section className={styles.statsSection}>
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className={styles.statsGrid}
+        >
           {stats.map((stat, i) => (
-            <div key={i} className="text-center">
-              <div className="font-display font-800 text-3xl text-accent mb-1">{stat.value}</div>
-              <div className="text-slate-400 text-sm">{stat.label}</div>
-            </div>
+            <motion.div key={i} variants={itemVariants} className={styles.statItem}>
+              <div className={styles.statValue}>{stat.value}</div>
+              <div className={styles.statLabel}>{stat.label}</div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* Features */}
-      <section className="max-w-6xl mx-auto px-6 py-24">
-        <div className="text-center mb-16">
-          <h2 className="font-display font-700 text-3xl md:text-4xl text-white mb-4">
+      <section className={styles.featuresSection}>
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className={styles.featuresHeader}
+        >
+          <motion.h2 variants={itemVariants} className={styles.featuresTitle}>
             Multimodal AI Analysis
-          </h2>
-          <p className="text-slate-400 max-w-xl mx-auto">
+          </motion.h2>
+          <motion.p variants={itemVariants} className={styles.featuresSubtitle}>
             Three independent assessment modules, combined into a single comprehensive cognitive health score.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-3 gap-6">
+          </motion.p>
+        </motion.div>
+
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-100px" }}
+          variants={containerVariants}
+          className={styles.featuresGrid}
+        >
           {features.map((f, i) => (
-            <div
-              key={i}
-              className="glass-card rounded-2xl p-8 hover-lift border border-white/5 hover:border-accent/30 transition-all duration-300"
-              style={{ animationDelay: `${i * 150}ms` }}
-            >
-              <div className="text-4xl mb-5">{f.icon}</div>
-              <h3 className="font-display font-700 text-white text-xl mb-3">{f.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{f.desc}</p>
-              <div className="mt-5 h-px bg-gradient-to-r from-accent/30 to-transparent" />
-              <div className="mt-4 flex items-center gap-2 text-xs text-accent font-mono">
-                <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+            <motion.div key={i} variants={itemVariants} className={styles.featureCard}>
+              <div className={styles.featureIcon}>{f.icon}</div>
+              <h3 className={styles.featureTitle}>{f.title}</h3>
+              <p className={styles.featureDesc}>{f.desc}</p>
+              <div className={styles.featureDivider} />
+              <div className={styles.featureStatus}>
+                <div className={styles.dot} />
                 Module Active
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
       {/* CTA Banner */}
-      <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className="glass-card rounded-3xl p-12 text-center glow-accent border-accent/20">
-          <div className="text-4xl mb-4">🔬</div>
-          <h2 className="font-display font-700 text-3xl text-white mb-4">
-            Ready to begin your assessment?
-          </h2>
-          <p className="text-slate-400 mb-8 max-w-md mx-auto">
+      <section className={styles.ctaSection}>
+        <motion.div 
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className={styles.ctaCard}
+        >
+          <div className={styles.ctaIcon}>🔬</div>
+          <h2 className={styles.ctaTitle}>Ready to begin your assessment?</h2>
+          <p className={styles.ctaDesc}>
             A 5-minute assessment that could provide early insights into your cognitive health.
           </p>
-          <Link
-            href="/assessment"
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl bg-accent text-bg font-600 text-lg hover:bg-highlight transition-all duration-300 btn-press"
-          >
-            Start Free Assessment
+          <Link href="/assessment" className={styles.btnPrimary} style={{ display: 'inline-flex' }}>
+            <span>Start Free Assessment</span>
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
               <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </Link>
-        </div>
+        </motion.div>
       </section>
     </div>
   );
