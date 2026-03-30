@@ -192,7 +192,7 @@
 /******/ 	
 /******/ 	/* webpack/runtime/getFullHash */
 /******/ 	!function() {
-/******/ 		__webpack_require__.h = function() { return "7fdeef43ea053e9c"; }
+/******/ 		__webpack_require__.h = function() { return "1602d1e081bf153f"; }
 /******/ 	}();
 /******/ 	
 /******/ 	/* webpack/runtime/global */
@@ -831,7 +831,7 @@
 /******/ 		var installedChunks = __webpack_require__.hmrS_jsonp = __webpack_require__.hmrS_jsonp || {
 /******/ 			"webpack": 0,
 /******/ 			"css-app_page_module_css": 0,
-/******/ 			"css-app_globals_css-app_layout_module_css-components_Footer_module_css-components_Navbar_module_css": 0,
+/******/ 			"css-app_globals_css-app_layout_module_css-components_ChatBot_module_css-components_Footer_mod-2a04ee": 0,
 /******/ 			"css-app_assessment_page_module_css-components_ModuleCard_module_css": 0,
 /******/ 			"css-components_RiskIndicator_module_css": 0,
 /******/ 			"css-app_assessment_test_module_css": 0
@@ -846,7 +846,7 @@
 /******/ 					if(installedChunkData) {
 /******/ 						promises.push(installedChunkData[2]);
 /******/ 					} else {
-/******/ 						if(/^(app(\/(a(ssessment\/(|facial\/|speech\/)page|bout\/page)|(|history\/)page|layout)|\-pages\-internals)|main\-app)$/.test(chunkId)) {
+/******/ 						if(/^(app(\/(a(ssessment\/((cognitive|facial|speech)\/|)page|bout\/page)|(|history\/)page|layout)|\-pages\-internals)|main\-app)$/.test(chunkId)) {
 /******/ 							// setup Promise in chunk cache
 /******/ 							var promise = new Promise(function(resolve, reject) { installedChunkData = installedChunks[chunkId] = [resolve, reject]; });
 /******/ 							promises.push(installedChunkData[2] = promise);

@@ -1,7 +1,8 @@
 {
-  "/page": "app/page.js",
   "/assessment/page": "app/assessment/page.js",
+  "/history/page": "app/history/page.js",
   "/assessment/speech/page": "app/assessment/speech/page.js",
+  "/about/page": "app/about/page.js",
   "/assessment/facial/page": "app/assessment/facial/page.js",
-  "/history/page": "app/history/page.js"
+  "/assessment/cognitive/page": "app/assessment/cognitive/page.js"
 }

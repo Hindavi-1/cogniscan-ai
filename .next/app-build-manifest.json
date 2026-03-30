@@ -9,7 +9,7 @@
     "/layout": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/css/css-app_globals_css-app_layout_module_css-components_Footer_module_css-components_Navbar_module_css.css",
+      "static/css/css-app_globals_css-app_layout_module_css-components_ChatBot_module_css-components_Footer_mod-2a04ee.css",
       "static/chunks/app/layout.js"
     ],
     "/assessment/page": [
@@ -40,6 +40,12 @@
       "static/chunks/main-app.js",
       "static/css/css-app_assessment_test_module_css.css",
       "static/chunks/app/assessment/facial/page.js"
+    ],
+    "/assessment/cognitive/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/css-app_assessment_test_module_css.css",
+      "static/chunks/app/assessment/cognitive/page.js"
     ]
   }
 }
